@@ -5,7 +5,7 @@ def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.push("斎藤")
+  names<<("斎藤")
   print names
 end
 
@@ -30,8 +30,9 @@ end
 def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
+
   # 以下に回答を記載
-  sports.delete(nil)
+  sports.compact!
   # 以下は変更しないで下さい
   p sports
 end
@@ -60,7 +61,7 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-  array.map! {|x| x.to_i}
+  array.map!(&:to_i)
   # 以下は変更しないで下さい
   p array
 end
@@ -69,8 +70,8 @@ def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  programming_languages.map!{|x| x.capitalize}
-  upper_case_programming_languages = programming_languages.map{|x| x.upcase}
+  programming_languages.map!(&:capitalize)
+  upper_case_programming_languages = programming_languages.map(&:upcase)
   # 以下は変更しないで下さい
   p programming_languages
   p upper_case_programming_languages
@@ -89,8 +90,8 @@ def q10
   foods = %w(いか たこ うに しゃけ うにぎり うに軍艦 うに丼)
 
   # 以下に回答を記載
-  foods.each do |x| 
-    if x.include?("うに")
+  foods.each do |food| 
+    if food.include?("うに")
     puts "好物です"
   else
     puts "まあまあ好きです"
@@ -102,9 +103,9 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-  new_sports = sports.flatten.uniq
+  sports.flatten!.uniq!
   puts "ユーザーの趣味一覧"
-  new_sports.each.with_index(1) do |name,index|
+  sports.each.with_index(1) do |name,index|
     puts "No#{index} #{name}"
   end
   
@@ -139,18 +140,23 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  
-  if data1.has_key?(:age)
-    puts "OK"
-  else
-    puts "NG"
-  end
+  answer1 = data1.has_key?(:age) ?  "OK" :  "NG"
+  puts answer1
 
-  if data2.has_key?(:age)
-    puts "OK"
-  else
-    puts "NG"
-  end
+  answer2 = data2.has_key?(:age) ? "OK" : "NG"
+  puts answer2
+
+  # if data1.has_key?(:age)
+  #   puts "OK"
+  # else
+  #   puts "NG"
+  # end
+
+  # if data2.has_key?(:age)
+  #   puts "OK"
+  # else
+  #   puts "NG"
+  # end
 
 end
 
@@ -165,14 +171,13 @@ def q16
   # 以下に回答を記載
   
   users.each do |user|
-  user.each_value do |name,age|
   
   
-    puts "私の名前は#{name}です。年齢は#{age}です。"
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}です。"
   end
 end
 
-end
+
 
 class UserQ17
   # 以下に回答を記載
