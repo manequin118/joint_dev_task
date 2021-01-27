@@ -1,6 +1,6 @@
 # 課題の回答は このファイル をご利用下さい。
 # 回答の出力を確認される際は，「ruby main.rb」をターミナルから実行して下さい。
-
+# encoding: utf-8
 def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
@@ -253,14 +253,31 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_reader :name,:age
+  def initialize(**params)
+   @name = params[:name]
+   @age = params[:age]
+  end
 end
-
 class Zoo
   # 以下に回答を記載
-
+  def initialize(**params)
+    @entry_fee = params[:entry_fee]
+  end
+ def info_entry_fee(user)
+  if user.age == 3
+    puts "#{user.name}さんの入場料は#{@entry_fee[:infant]}円です。"
+  elsif user.age == 10
+    puts "#{user.name}さんの入場料は#{@entry_fee[:children]}円です。"
+  elsif user.age == 32
+    puts "#{user.name}さんの入場料は#{@entry_fee[:adult]}円です。"
+  elsif user.age == 108
+    puts "#{user.name}さんの入場料は#{@entry_fee[:senior]}円です。"
+  
+  end
+ 
+ end
 end
-
 
 def q20
   # ここは変更しないで下さい（動物園・ユーザー情報は変更していただいてOKです）
