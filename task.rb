@@ -240,8 +240,8 @@ end
 class Item
   # 以下を修正して下さい
  attr_reader :name
-  def initialize(**params)
-    @name = params[:name]
+  def initialize(name:)
+    @name = name
   end
 end
 
@@ -264,17 +264,30 @@ class Zoo
   def initialize(**params)
     @entry_fee = params[:entry_fee]
   end
+
  def info_entry_fee(user)
-  if user.age == 3
-    puts "#{user.name}さんの入場料は#{@entry_fee[:infant]}円です。"
-  elsif user.age == 10
-    puts "#{user.name}さんの入場料は#{@entry_fee[:children]}円です。"
-  elsif user.age == 32
-    puts "#{user.name}さんの入場料は#{@entry_fee[:adult]}円です。"
-  elsif user.age == 108
-    puts "#{user.name}さんの入場料は#{@entry_fee[:senior]}円です。"
+
+  case user.age
+    when 1...5
+      @fee = @entry_fee[:infant]
+    when 6...12
+      @fee = @entry_fee[:children]
+    when 13...64
+      @fee = @entry_fee[:adult]
+    when 65...120
+      @fee = @entry_fee[:senior]
+  # if user.age == 3
+  #   puts "#{user.name}さんの入場料は#{@entry_fee[:infant]}円です。"
+  # elsif user.age == 10
+  #   puts "#{user.name}さんの入場料は#{@entry_fee[:children]}円です。"
+  # elsif user.age == 32
+  #   puts "#{user.name}さんの入場料は#{@entry_fee[:adult]}円です。"
+  # elsif user.age == 108
+  #   puts "#{user.name}さんの入場料は#{@entry_fee[:senior]}円です。"
   
   end
+
+  puts "#{user.name}さんの入場料は#{@fee}円です。"
  
  end
 end
